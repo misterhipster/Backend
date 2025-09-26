@@ -1,13 +1,15 @@
 package com.example.demo.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*") // Разрешаем запросы с любого origin
@@ -21,6 +23,18 @@ public class GetData {
         } catch (IOException e) {
             e.printStackTrace();
             return "Ошибка при сохранении данных";
+        }
+    }
+
+    @GetMapping("api/get")
+    public String getData(){
+        try {
+            Path path = Paths.get("data.txt");
+
+            return Files.readString(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Ошибка при чтении файла: ";
         }
     }
 }
