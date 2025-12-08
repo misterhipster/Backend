@@ -15,6 +15,16 @@ import java.util.List;
 @CrossOrigin(origins = "*") // Разрешаем запросы с любого origin
 public class GetData {
 
+    @GetMapping("/api/health")
+    public Map<String, Object> healthCheck() {
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", "healthy");
+        response.put("service", "backend");
+        response.put("port", 8080); // или получать из настроек
+        response.put("timestamp", System.currentTimeMillis());
+        return response;
+    }
+
     @PostMapping("api/send")
     public String sendData(@RequestBody String data) {
         try (FileWriter writer = new FileWriter("data.txt", true)) { // true = append mode
