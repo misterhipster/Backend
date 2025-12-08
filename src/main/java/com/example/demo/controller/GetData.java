@@ -10,21 +10,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
+// import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*") // Разрешаем запросы с любого origin
 public class GetData {
 
-    @GetMapping("/api/health")
-    public Map<String, Object> healthCheck() {
-        Map<String, Object> response = new HashMap<>();
-        response.put("status", "healthy");
-        response.put("service", "backend");
-        response.put("port", 8080); // или получать из настроек
-        response.put("timestamp", System.currentTimeMillis());
-        return response;
-    }
+    // @GetMapping("/api/health")
+    // public Map<String, Object> healthCheck() {
+    //     Map<String, Object> response = new HashMap<>();
+    //     response.put("status", "healthy");
+    //     response.put("service", "backend");
+    //     response.put("port", 8080); // или получать из настроек
+    //     response.put("timestamp", System.currentTimeMillis());
+    //     return response;
+    // }
 
     @PostMapping("api/send")
     public String sendData(@RequestBody String data) {
